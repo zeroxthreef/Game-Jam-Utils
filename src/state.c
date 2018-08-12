@@ -49,7 +49,7 @@ int GJU_AddForegroundState(gju_state_manager_t *state_manager, StateInitCB CB_Fo
   CB_ForegroundRender = CB_ForegroundRenderf;
   CB_ForegroundDestroy = CB_ForegroundDestroyf;
 
-  CB_ForegroundInit();
+  CB_ForegroundInit(state_manager);
 
   return 0;
 }
