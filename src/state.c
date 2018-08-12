@@ -17,7 +17,9 @@ int GJU_InitStateManager(gju_state_manager_t *state_manager)
 
 int GJU_AddState(gju_state_manager_t *state_manager, const char *name, StateInitCB CB_Initf, StateLogicCB CB_Logicf, StateEventCB CB_Eventf, StateRenderCB CB_Renderf, StateDestroyCB CB_Destroyf)
 {
+  static short first_state = 1;
   gju_state_t tempState;
+
   tempState.name = name;
   tempState.CB_Init = CB_Initf;
   tempState.CB_Logic = CB_Logicf;
@@ -27,7 +29,13 @@ int GJU_AddState(gju_state_manager_t *state_manager, const char *name, StateInit
   if(GJU_AddArrayEntry(&state_manager->states, state_manager->stateNum, &tempState, sizeof(gju_state_t)))
     printf("Huge error. Not going to do anything about it though because I don't have time\n");
 
-  tempState.CB_Init();
+  if(first_state)
+  {
+    tempState.CB_Init(state_manager);
+    state_manager->currentStateName = tempState.name;
+    first_state = 0;
+  }
+
   state_manager->stateNum++;
   return 0;
 }
@@ -69,7 +77,7 @@ int GJU_ChangeState(gju_state_manager_t *state_manager, const char *name)
   {
     if(strcmp(state_manager->states[i].name, name) == 0)
     {
-      state_manager->states[i].CB_Init();
+      state_manager->states[i].CB_Init(state_manager);
       state_manager->cacheStateNum = i;
       state_manager->currentStateName = state_manager->states[i].name;
 

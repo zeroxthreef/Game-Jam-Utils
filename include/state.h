@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-typedef void(*StateInitCB)();
+typedef void(*StateInitCB)(void *);/* get the manager pointer */
 typedef void(*StateLogicCB)();
 typedef void(*StateEventCB)(void *);/* event data */
 typedef void(*StateRenderCB)();
