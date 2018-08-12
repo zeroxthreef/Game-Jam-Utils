@@ -52,4 +52,4 @@ void GJU_SimpleGameLoop(size_t tick_hz, size_t max_frameskip, DelayCB Delayf, Ge
   }
 }
 
-void GJU_GameLoopExit(short value){GJU_GLoopExit = value}
+void GJU_GameLoopExit(short value){GJU_GLoopExit = value;}
