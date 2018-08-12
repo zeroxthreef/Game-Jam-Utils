@@ -3,6 +3,8 @@
 
 #include <stddef.h>
 
+#include "state.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
