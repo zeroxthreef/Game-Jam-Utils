@@ -4,14 +4,13 @@
 #include <stdio.h>
 
 
-int GJU_InitStateManager(gju_state_manager_t *state_manager, StateDelayCB delay)
+int GJU_InitStateManager(gju_state_manager_t *state_manager)
 {
 
   state_manager->stateNum = 0;
   state_manager->states = NULL;
   state_manager->currentStateName = "";
   state_manager->cacheStateNum = 0;
-  state_manager->delay = delay;
 
   return 0;
 }

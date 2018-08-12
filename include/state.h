@@ -38,12 +38,11 @@ typedef struct
   const char *currentStateName;
   size_t cacheStateNum; /* this is only used internally */
   void *event; /* for something like SDL_Event */
-  StateDelayCB delay;
 } gju_state_manager_t;
 
 
 
-int GJU_InitStateManager(gju_state_manager_t *state_manager, StateDelayCB delay);
+int GJU_InitStateManager(gju_state_manager_t *state_manager);
 
 int GJU_AddState(gju_state_manager_t *state_manager, const char *name, StateInitCB CB_Initf, StateLogicCB CB_Logicf, StateEventCB CB_Eventf, StateRenderCB CB_Renderf, StateDestroyCB CB_Destroyf);
 
