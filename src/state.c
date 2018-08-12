@@ -56,8 +56,8 @@ int GJU_DestroyStateManager(gju_state_manager_t *state_manager)
 
 int GJU_ResetStateManager(gju_state_manager_t *state_manager)
 {
-  Shear_DestroyStateManager(state_manager);
-  Shear_InitStateManager(state_manager);
+  GJU_DestroyStateManager(state_manager);
+  GJU_InitStateManager(state_manager);
 }
 
 int GJU_ChangeState(gju_state_manager_t *state_manager, const char *name)
