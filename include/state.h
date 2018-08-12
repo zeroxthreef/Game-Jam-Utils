@@ -40,6 +40,7 @@ typedef struct
   size_t cacheStateNum; /* this is only used internally */
   void *event; /* for something like SDL_Event */
   StatePollCB PollEvent; /* something to poll events */
+  short using_foreground;
 } gju_state_manager_t;
 
 

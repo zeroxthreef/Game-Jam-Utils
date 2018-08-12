@@ -88,13 +88,15 @@ void GJU_TickState(gju_state_manager_t *state_manager)
     /* Call all event callbacks */
     if(state_manager->stateNum > 0)
       state_manager->states[state_manager->cacheStateNum].CB_Event(state_manager->event);
-    CB_ForegroundEvent(state_manager->event);
+    if(state_manager->using_foreground)
+      CB_ForegroundEvent(state_manager->event);
   }
 
   /* call logic functions */
   if(state_manager->stateNum > 0)
     state_manager->states[state_manager->cacheStateNum].CB_Logic();
-  CB_ForegroundLogic();
+  if(state_manager->using_foreground)
+    CB_ForegroundLogic();
 }
 
 void GJU_RenderState(gju_state_manager_t *state_manager)
@@ -102,5 +104,6 @@ void GJU_RenderState(gju_state_manager_t *state_manager)
   /* call render functions */
   if(state_manager->stateNum > 0)
     state_manager->states[state_manager->cacheStateNum].CB_Render();
-  CB_ForegroundRender();
+  if(state_manager->using_foreground)
+    CB_ForegroundRender();
 }
