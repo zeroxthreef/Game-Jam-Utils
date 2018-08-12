@@ -13,7 +13,8 @@ typedef void(*StateEventCB)(void *);/* event data */
 typedef void(*StateRenderCB)();
 typedef void(*StateDestroyCB)();
 
-typedef void(*StateDelayCB)();
+typedef int(*StatePollCB)(void *);
+/* typedef void(*StateDelayCB)(); */
 
 StateInitCB CB_ForegroundInit;
 StateLogicCB CB_ForegroundLogic;
@@ -38,6 +39,7 @@ typedef struct
   const char *currentStateName;
   size_t cacheStateNum; /* this is only used internally */
   void *event; /* for something like SDL_Event */
+  StatePollCB PollEvent; /* something to poll events */
 } gju_state_manager_t;
 
 

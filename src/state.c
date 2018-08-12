@@ -83,7 +83,7 @@ int GJU_ChangeState(gju_state_manager_t *state_manager, const char *name)
 
 void GJU_TickState(gju_state_manager_t *state_manager)
 {
-  while(SDL_PollEvent(state_manager->event))
+  while(state_manager->PollEvent(state_manager->event))
   {
     /* Call all event callbacks */
     if(state_manager->stateNum > 0)
