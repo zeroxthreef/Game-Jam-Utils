@@ -20,6 +20,8 @@ int GJU_AddArrayEntry(void **ptr, size_t currentNum, void *objectPtr, size_t siz
 
 void GJU_SafeFree(void *ptr);
 
+void GJU_SimpleGameLoop(size_t tick_hz, size_t max_frameskip, DelayCB Delayf, GetTicksCB GetTicksf, gju_state_manager_t *manager);
+
 #ifdef __cplusplus
 }
 #endif
