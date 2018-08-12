@@ -10,6 +10,8 @@
 extern "C" {
 #endif
 
+short GJU_GLoopExit = 0;
+
 typedef void(*DelayCB)(int milliseconds);
 typedef unsigned int(*GetTicksCB)();
 

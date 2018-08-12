@@ -7,8 +7,6 @@
 extern "C" {
 #endif
 
-short GJU_GlobalExit = 0;
-
 int GJU_ReallocArray(void **ptr, size_t currentNum, size_t wantNum, size_t sizeOfIndividualObject);
 
 int GJU_RemoveArrayEntry(void **ptr, size_t currentNum, size_t positionToRemove, size_t sizeOfIndividualObject);

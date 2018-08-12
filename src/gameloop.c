@@ -11,7 +11,7 @@ void GJU_SimpleGameLoop(size_t tick_hz, size_t max_frameskip, DelayCB Delayf, Ge
 
   current_tick = GetTicksf();
 
-  while(!GJU_GlobalExit)
+  while(!GJU_GLoopExit)
   {
     /* call state event functions */
     /* call state logic functions */
