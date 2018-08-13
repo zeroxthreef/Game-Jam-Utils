@@ -8,7 +8,7 @@ short GJU_GLoopExit = 0;
 
 void GJU_SimpleGameLoop(size_t tick_hz, size_t max_frameskip, DelayCB Delayf, GetTicksCB GetTicksf, gju_state_manager_t *manager)
 {
-  int skipTime = 0, lastframeLag = 0, frameskipCount = 0, current_tick = 0;
+  unsigned int skipTime = 0, lastframeLag = 0, frameskipCount = 0, current_tick = 0;
 
 
   current_tick = GetTicksf();
@@ -28,7 +28,7 @@ void GJU_SimpleGameLoop(size_t tick_hz, size_t max_frameskip, DelayCB Delayf, Ge
     else
     {
       lastframeLag = 0;
-      if(frameskipCount >= max_frameskip)
+      if(frameskipCount >= (unsigned int)max_frameskip)
       {
         /* render */
         GJU_RenderState(manager);
@@ -36,10 +36,10 @@ void GJU_SimpleGameLoop(size_t tick_hz, size_t max_frameskip, DelayCB Delayf, Ge
     }
 
 
-    current_tick += 1000/tick_hz;
+    current_tick += 1000/(unsigned int)tick_hz;
 
 
-    skipTime = current_tick - GetTicksf();
+    /*skipTime = current_tick - GetTicksf();
 
     if(skipTime >= 0)
     {
@@ -48,7 +48,7 @@ void GJU_SimpleGameLoop(size_t tick_hz, size_t max_frameskip, DelayCB Delayf, Ge
     else
     {
       lastframeLag = 1;
-    }
+    }*/
   }
 }
 

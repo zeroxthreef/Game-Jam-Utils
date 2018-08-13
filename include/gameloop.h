@@ -10,7 +10,7 @@
 extern "C" {
 #endif
 
-typedef void(*DelayCB)(int milliseconds);
+typedef void(*DelayCB)(unsigned int milliseconds);
 typedef unsigned int(*GetTicksCB)();
 
 
