@@ -39,7 +39,7 @@ void GJU_SimpleGameLoop(size_t tick_hz, size_t max_frameskip, DelayCB Delayf, Ge
     current_tick += 1000/(unsigned int)tick_hz;
 
 
-    /*skipTime = current_tick - GetTicksf();
+    skipTime = current_tick - GetTicksf();
 
     if(skipTime >= 0)
     {
@@ -48,7 +48,7 @@ void GJU_SimpleGameLoop(size_t tick_hz, size_t max_frameskip, DelayCB Delayf, Ge
     else
     {
       lastframeLag = 1;
-    }*/
+    }
   }
 }
 
