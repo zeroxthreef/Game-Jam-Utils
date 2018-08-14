@@ -10,8 +10,8 @@
 extern "C" {
 #endif
 
-typedef void(*DelayCB)(unsigned int milliseconds);
-typedef unsigned int(*GetTicksCB)();
+typedef void(*DelayCB)(unsigned int);
+typedef unsigned int(*GetTicksCB)(void);
 
 
 void GJU_SimpleGameLoop(size_t tick_hz, size_t max_frameskip, DelayCB Delayf, GetTicksCB GetTicksf, gju_state_manager_t *manager);

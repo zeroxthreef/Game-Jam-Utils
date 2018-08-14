@@ -21,7 +21,6 @@ void GJU_SimpleGameLoop(size_t tick_hz, size_t max_frameskip, DelayCB Delayf, Ge
 
     if(!lastframeLag)
     {
-      frameskipCount = 0;
       /* render */
       GJU_RenderState(manager);
     }
@@ -40,7 +39,6 @@ void GJU_SimpleGameLoop(size_t tick_hz, size_t max_frameskip, DelayCB Delayf, Ge
 
 
     skipTime = current_tick - GetTicksf();
-
     if(skipTime >= 0)
     {
       Delayf(skipTime);

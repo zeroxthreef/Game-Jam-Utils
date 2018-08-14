@@ -13,14 +13,10 @@ typedef void(*StateEventCB)(void *);/* event data */
 typedef void(*StateRenderCB)();
 typedef void(*StateDestroyCB)();
 
-typedef int(*StatePollCB)(void *);
+/* typedef int(*StatePollCB)(void *); */
+typedef int(*StatePollCB)();
 /* typedef void(*StateDelayCB)(); */
 
-StateInitCB CB_ForegroundInit;
-StateLogicCB CB_ForegroundLogic;
-StateEventCB CB_ForegroundEvent;
-StateRenderCB CB_ForegroundRender;
-StateDestroyCB CB_ForegroundDestroy;
 
 typedef struct
 {
@@ -41,6 +37,12 @@ typedef struct
   void *event; /* for something like SDL_Event */
   StatePollCB PollEvent; /* something to poll events */
   short using_foreground;
+  /* foreground stuff */
+  StateInitCB CB_ForegroundInit;
+  StateLogicCB CB_ForegroundLogic;
+  StateEventCB CB_ForegroundEvent;
+  StateRenderCB CB_ForegroundRender;
+  StateDestroyCB CB_ForegroundDestroy;
 } gju_state_manager_t;
 
 

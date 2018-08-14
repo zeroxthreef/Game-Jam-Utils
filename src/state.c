@@ -9,7 +9,7 @@ int GJU_InitStateManager(gju_state_manager_t *state_manager)
 
   state_manager->stateNum = 0;
   state_manager->states = NULL;
-  state_manager->currentStateName = "";
+  state_manager->currentStateName = NULL;
   state_manager->cacheStateNum = 0;
 
   return 0;
@@ -43,20 +43,21 @@ int GJU_AddState(gju_state_manager_t *state_manager, const char *name, StateInit
 int GJU_AddForegroundState(gju_state_manager_t *state_manager, StateInitCB CB_ForegroundInitf, StateLogicCB CB_ForegroundLogicf, StateEventCB CB_ForegroundEventf, StateRenderCB CB_ForegroundRenderf, StateDestroyCB CB_ForegroundDestroyf)
 {
   /* TODO add error checking */
-  CB_ForegroundInit = CB_ForegroundInitf;
-  CB_ForegroundLogic = CB_ForegroundLogicf;
-  CB_ForegroundEvent = CB_ForegroundEventf;
-  CB_ForegroundRender = CB_ForegroundRenderf;
-  CB_ForegroundDestroy = CB_ForegroundDestroyf;
+  state_manager->CB_ForegroundInit = CB_ForegroundInitf;
+  state_manager->CB_ForegroundLogic = CB_ForegroundLogicf;
+  state_manager->CB_ForegroundEvent = CB_ForegroundEventf;
+  state_manager->CB_ForegroundRender = CB_ForegroundRenderf;
+  state_manager->CB_ForegroundDestroy = CB_ForegroundDestroyf;
 
-  CB_ForegroundInit(state_manager);
+  state_manager->CB_ForegroundInit(state_manager);
 
   return 0;
 }
 
 int GJU_DestroyStateManager(gju_state_manager_t *state_manager)
 {
-  CB_ForegroundDestroy();
+  if(state_manager->stateNum > 0)
+    state_manager->CB_ForegroundDestroy();
   free(state_manager->states);
   return 0;
 }
@@ -91,20 +92,20 @@ int GJU_ChangeState(gju_state_manager_t *state_manager, const char *name)
 
 void GJU_TickState(gju_state_manager_t *state_manager)
 {
-  while(state_manager->PollEvent(state_manager->event))
+  while(state_manager->PollEvent(state_manager->event))//state_manager->event
   {
     /* Call all event callbacks */
     if(state_manager->stateNum > 0)
       state_manager->states[state_manager->cacheStateNum].CB_Event(state_manager->event);
     if(state_manager->using_foreground)
-      CB_ForegroundEvent(state_manager->event);
+      state_manager->CB_ForegroundEvent(state_manager->event);
   }
 
   /* call logic functions */
   if(state_manager->stateNum > 0)
     state_manager->states[state_manager->cacheStateNum].CB_Logic();
   if(state_manager->using_foreground)
-    CB_ForegroundLogic();
+    state_manager->CB_ForegroundLogic();
 }
 
 void GJU_RenderState(gju_state_manager_t *state_manager)
@@ -113,5 +114,5 @@ void GJU_RenderState(gju_state_manager_t *state_manager)
   if(state_manager->stateNum > 0)
     state_manager->states[state_manager->cacheStateNum].CB_Render();
   if(state_manager->using_foreground)
-    CB_ForegroundRender();
+    state_manager->CB_ForegroundRender();
 }

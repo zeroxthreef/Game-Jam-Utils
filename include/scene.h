@@ -7,8 +7,8 @@
 extern "C" {
 #endif
 
-typedef void(*ObjectDestroyCB)(char *name, char *type, void *data);
-typedef unsigned int(*SceneGetTicks)();
+typedef void(*ObjectDestroyCB)(char *, char *, void *); /* (char *name, char *type, void *data) */
+typedef unsigned int(*SceneGetTicks)(void);
 
 typedef struct
 {
