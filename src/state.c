@@ -2,6 +2,8 @@
 #include "util.h"
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 
 int GJU_InitStateManager(gju_state_manager_t *state_manager)
@@ -11,6 +13,7 @@ int GJU_InitStateManager(gju_state_manager_t *state_manager)
   state_manager->states = NULL;
   state_manager->currentStateName = NULL;
   state_manager->cacheStateNum = 0;
+  state_manager->using_foreground = 0;
 
   return 0;
 }
@@ -50,6 +53,7 @@ int GJU_AddForegroundState(gju_state_manager_t *state_manager, StateInitCB CB_Fo
   state_manager->CB_ForegroundDestroy = CB_ForegroundDestroyf;
 
   state_manager->CB_ForegroundInit(state_manager);
+  state_manager->using_foreground = 1;
 
   return 0;
 }
@@ -57,6 +61,8 @@ int GJU_AddForegroundState(gju_state_manager_t *state_manager, StateInitCB CB_Fo
 int GJU_DestroyStateManager(gju_state_manager_t *state_manager)
 {
   if(state_manager->stateNum > 0)
+    state_manager->states[state_manager->cacheStateNum].CB_Destroy();
+  if(state_manager->using_foreground)
     state_manager->CB_ForegroundDestroy();
   free(state_manager->states);
   return 0;
