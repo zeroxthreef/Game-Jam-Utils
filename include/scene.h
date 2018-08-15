@@ -28,6 +28,21 @@ typedef struct
   SceneGetTicks getticks;
 } gju_scene_manager_t;
 
+
+int GJU_InitScene(gju_scene_manager_t *manager);
+
+int GJU_AddObject(gju_scene_manager_t *manager, char *type, char *name, short visible, size_t lifetime, ObjectDestroyCB CB_DestroyObjectf, void *data);
+
+int GJU_RemoveObjectByName(gju_scene_manager_t *manager, char *type, char *name);
+
+int GJU_RemoveObjectByType(gju_scene_manager_t *manager, char *type);
+
+void *GJU_GetObjectByName(gju_scene_manager_t *manager, char *type, char *name);
+
+gju_scene_object_t *GJU_GetObjectByIndex(gju_scene_manager_t *manager, size_t index);
+
+void GJU_DestroyScene(gju_scene_manager_t *manager);
+
 #ifdef __cplusplus
 }
 #endif
