@@ -30,12 +30,12 @@ int GJU_AddState(gju_state_manager_t *state_manager, const char *name, StateInit
   tempState.CB_Destroy = CB_Destroyf;
   tempState.CB_Render = CB_Renderf;
   if(GJU_AddArrayEntry(&state_manager->states, state_manager->stateNum, &tempState, sizeof(gju_state_t)))
-    printf("Huge error. Not going to do anything about it though because I don't have time\n");
+    printf("STATE: Huge error. Not going to do anything about it though because I don't have time\n");
 
   if(first_state)
   {
     tempState.CB_Init(state_manager);
-    state_manager->currentStateName = tempState.name;
+    state_manager->currentStateName = name;
     first_state = 0;
   }
 

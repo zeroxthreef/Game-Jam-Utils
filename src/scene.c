@@ -34,7 +34,7 @@ int GJU_AddObject(gju_scene_manager_t *manager, char *type, char *name, short vi
   tempObj.data = data;
 
   if(GJU_AddArrayEntry(&manager->objects, manager->object_num, &tempObj, sizeof(gju_scene_object_t)))
-    printf("Huge error. Not going to do anything about it though because I don't have time\n");
+    printf("SCENE: Huge error. Not going to do anything about it though because I don't have time\n");
 
 
   manager->object_num++;
