@@ -1,5 +1,5 @@
-#ifndef STATE_H__
-#define STATE_H__
+#ifndef SCENE_H__
+#define SCENE_H__
 
 #include <stddef.h>
 
